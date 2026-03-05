@@ -17,6 +17,7 @@
   <p><a href="./jobfilter_demo.mp4">Open the demo video directly</a></p>
 </div>
 
+
 ## What It Does
 
 JobFilter AI injects a draggable scanner panel into LinkedIn job pages, extracts the active role details, sends the description to Gemini, and returns a compact decision board:
