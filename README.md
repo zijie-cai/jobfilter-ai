@@ -12,10 +12,7 @@
 
 ## Demo
 
-<div align="center">
-  <video src="./jobfilter_demo.mp4" controls muted playsinline width="920"></video>
-  <p><a href="./jobfilter_demo.mp4">Open the demo video directly</a></p>
-</div>
+[![Watch the demo](https://www.youtube.com/watch?v=MSgoeuMqUmU&list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L)
 
 
 ## What It Does
