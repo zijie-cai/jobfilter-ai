@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JobFilter AI // CONFIG_CORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0c;
+            --accent: #00ff7f;
+            --accent-dim: rgba(0, 255, 127, 0.1);
+            --border: #1f1f23;
+            --text: #e2e8f0;
+            --text-dim: #64748b;
+            --error: #ff4757;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #050505;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background Grid */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        /* CRT Flicker Effect */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 100;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 127, 0.05);
+            animation: power-on 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes power-on {
+            0% { transform: scaleY(0.005) scaleX(0); opacity: 0; filter: brightness(5); }
+            40% { transform: scaleY(0.005) scaleX(1); opacity: 1; }
+            100% { transform: scaleY(1) scaleX(1); opacity: 1; filter: brightness(1); }
+        }
+
+        /* Corner Brackets */
+        .corner {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #333;
+            z-index: 5;
+        }
+        .corner-tl { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+        .corner-tr { top: 12px; right: 12px; border-left: 0; border-bottom: 0; }
+        .corner-bl { bottom: 12px; left: 12px; border-right: 0; border-top: 0; }
+        .corner-br { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 900;
+            font-size: 18px;
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.4);
+            position: relative;
+            animation: glitch-box 4s infinite;
+        }
+
+        @keyframes glitch-box {
+            0%, 90%, 100% { transform: none; box-shadow: 0 0 15px rgba(0, 255, 127, 0.4); }
+            92% { transform: skew(2deg); box-shadow: -2px 0 red, 2px 0 blue; }
+            94% { transform: skew(-2deg); }
+            96% { transform: none; }
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #fff;
+        }
+
+        .badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-dim);
+            padding: 4px 10px;
+            border: 1px solid rgba(0, 255, 127, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.8); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .description {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid var(--accent);
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #444;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            background: #0d0d10;
+            border: 1px solid var(--border);
+            padding: 16px;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:hover {
+            border-color: #333;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            background: #111114;
+            box-shadow: 0 0 20px rgba(0, 255, 127, 0.1);
+        }
+
+        button {
+            width: 100%;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 127, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            text-align: center;
+            margin-top: 20px;
+            min-height: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .success { color: var(--accent); }
+        .error { color: var(--error); }
+
+        .link {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .link:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+        }
+
+        .version {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: #333;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        /* Scan Line Animation */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 127, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 127, 0.2);
+            animation: scan 4s linear infinite;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    
+    <div class="container">
+        <div class="scanline"></div>
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <div class="header">
+            <div class="brand">
+                <div class="logo">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M19 10h-1.5L16 3H8L6.5 10H5c-1.1 0-2 .9-2 2v1h18v-1c0-1.1-.9-2-2-2zM7 15c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm10 0c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm-7 3h4" />
+                    </svg>
+                </div>
+                <h1>JobFilter AI</h1>
+            </div>
+            <div class="badge">
+                <div class="dot"></div>
+                CORE_LINK_ACTIVE
+            </div>
+        </div>
+        
+        <div class="description">
+            [SYSTEM_INFO]: Connect your Gemini API key to enable neural job analysis. 
+            Acquire credentials at <a href="https://aistudio.google.com/app/apikey" target="_blank" class="link">GOOGLE_AI_STUDIO</a>.
+        </div>
+        
+        <div class="field">
+            <label for="apiKey">AUTH_TOKEN // GEMINI_API_KEY</label>
+            <div class="input-wrapper">
+                <input type="password" id="apiKey" placeholder="ENTER_KEY_HERE...">
+            </div>
+        </div>
+        
+        <button id="save">INITIALIZE_CONNECTION</button>
+        <div id="status" class="status"></div>
+
+        <div class="footer">
+            <span class="version">v1.0.0 • AI POWERED</span>
+        </div>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>

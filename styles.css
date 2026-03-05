@@ -1,0 +1,380 @@
+/* Cyber-Scanner Aesthetic - Award-Winning UX */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Outfit:wght@400;600;800&display=swap');
+
+#jobfilter-ai-root {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    width: 320px;
+    z-index: 999999;
+    font-family: 'Outfit', sans-serif;
+    pointer-events: none;
+}
+
+.jf-panel {
+    pointer-events: auto;
+    background: #0a0a0c;
+    border: 1px solid #1f1f23;
+    border-radius: 4px; /* Sharper corners for tech feel */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 127, 0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+    animation: jf-power-on 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    color: #e2e8f0;
+}
+
+/* CRT Flicker Effect */
+.jf-panel::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 10;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Decorative Scan Line */
+.jf-panel::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 255, 127, 0.1), transparent);
+    animation: jf-scan 6s linear infinite;
+    pointer-events: none;
+    z-index: 11;
+}
+
+/* Corner Brackets */
+.jf-corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #333;
+    z-index: 5;
+}
+.jf-corner-tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
+.jf-corner-tr { top: 8px; right: 8px; border-left: 0; border-bottom: 0; }
+.jf-corner-bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; }
+.jf-corner-br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
+
+@keyframes jf-scan {
+    0% { top: -100px; }
+    100% { top: 100%; }
+}
+
+@keyframes jf-power-on {
+    0% { transform: scaleY(0.005) scaleX(0); opacity: 0; filter: brightness(5); }
+    40% { transform: scaleY(0.005) scaleX(1); opacity: 1; }
+    100% { transform: scaleY(1) scaleX(1); opacity: 1; filter: brightness(1); }
+}
+
+/* Header */
+.jf-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: grab;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1f1f23;
+    position: relative;
+}
+
+.jf-header:active { cursor: grabbing; }
+
+.jf-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.jf-logo {
+    width: 28px;
+    height: 28px;
+    background: #00ff7f;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 900;
+    font-size: 16px;
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.4);
+}
+
+.jf-title {
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.jf-live-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    color: #00ff7f;
+    background: rgba(0, 255, 127, 0.1);
+    padding: 2px 8px;
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.jf-dot {
+    width: 4px;
+    height: 4px;
+    background: #00ff7f;
+    border-radius: 50%;
+    animation: jf-pulse 1.5s infinite;
+    box-shadow: 0 0 8px #00ff7f;
+}
+
+@keyframes jf-pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.8); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Verdict Card - Immersive Reveal */
+.jf-verdict-card {
+    position: relative;
+    padding: 28px 16px;
+    text-align: center;
+    background: #0d0d10;
+    border: 1px solid #1f1f23;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.jf-verdict-card:hover {
+    transform: scale(1.02);
+    border-color: #333;
+}
+
+.jf-verdict-card::before {
+    content: 'SEC_LEVEL_04 // DATA_STREAM_ACTIVE';
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    color: #333;
+    letter-spacing: 0.1em;
+}
+
+.jf-verdict-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.jf-verdict-value {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    margin: 4px 0;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.jf-verdict-card.eligible .jf-verdict-value { color: #00ff7f; text-shadow: 0 0 25px rgba(0, 255, 127, 0.5); }
+.jf-verdict-card.not-eligible .jf-verdict-value { color: #ff4757; text-shadow: 0 0 25px rgba(255, 71, 87, 0.5); }
+.jf-verdict-card.maybe .jf-verdict-value { color: #ffa502; text-shadow: 0 0 25px rgba(255, 165, 2, 0.5); }
+
+.jf-reasoning {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #94a3b8;
+    max-width: 260px;
+    margin: 16px auto 0;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.8;
+}
+
+/* Grid Layout for Signals */
+.jf-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.jf-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 800;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.jf-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #151518;
+}
+
+.jf-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.jf-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: #1f1f23;
+}
+
+.jf-row-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.jf-row-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.jf-status-yes { color: #00ff7f; background: rgba(0, 255, 127, 0.08); border: 1px solid rgba(0, 255, 127, 0.2); }
+.jf-status-no { color: #ff4757; background: rgba(255, 71, 87, 0.08); border: 1px solid rgba(255, 71, 87, 0.2); }
+.jf-status-unknown { color: #64748b; background: rgba(100, 116, 139, 0.08); border: 1px solid rgba(100, 116, 139, 0.2); }
+
+/* Skills - Tech Tags */
+.jf-skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.jf-skill-chip {
+    background: #111114;
+    border: 1px solid #1f1f23;
+    padding: 5px 12px;
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: #94a3b8;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+}
+
+.jf-skill-chip:hover {
+    background: #00ff7f;
+    color: #000;
+    border-color: #00ff7f;
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.3);
+}
+
+/* Footer */
+.jf-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #1f1f23;
+}
+
+.jf-settings-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    color: #444;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.1em;
+}
+
+.jf-settings-link:hover { color: #00ff7f; text-shadow: 0 0 8px rgba(0, 255, 127, 0.5); }
+
+/* Loading State - Glitch Terminal */
+.jf-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+    gap: 20px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.jf-loading-text {
+    font-size: 11px;
+    color: #00ff7f;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: jf-flicker 2s infinite;
+}
+
+@keyframes jf-flicker {
+    0% { opacity: 1; }
+    5% { opacity: 0.4; }
+    10% { opacity: 1; }
+    15% { opacity: 0.8; }
+    20% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+.jf-spinner {
+    width: 60px;
+    height: 1px;
+    background: #1f1f23;
+    position: relative;
+    overflow: hidden;
+}
+
+.jf-spinner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #00ff7f;
+    animation: jf-loading-bar 1.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    box-shadow: 0 0 10px #00ff7f;
+}
+
+@keyframes jf-loading-bar {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
