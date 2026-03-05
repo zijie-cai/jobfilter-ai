@@ -12,8 +12,12 @@
 
 ## Demo
 
+<<<<<<< Updated upstream
 [Watch the demo](https://www.youtube.com/watch?v=MSgoeuMqUmU&list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L)
 
+=======
+https://github.com/user-attachments/assets/38abd6ce-03f6-42a9-9f0f-770232a9ae7d
+>>>>>>> Stashed changes
 
 ## What It Does
 
