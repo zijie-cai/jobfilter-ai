@@ -12,7 +12,7 @@
 
 ## Demo
 
-[![Watch the demo](https://www.youtube.com/watch?v=MSgoeuMqUmU&list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L)
+[Watch the demo](https://www.youtube.com/watch?v=MSgoeuMqUmU&list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L)
 
 
 ## What It Does
