@@ -9,7 +9,7 @@
     <code>Cyber UI</code>
   </p>
   <p>
-    <a href="https://zijie-cai.github.io/jobfilter-ai/">Open Landing Page</a> •
+    <a href="https://zijie-cai.github.io/jobfilter-ai/">Open Landing Page</a>
   </p>
 </div>
 
