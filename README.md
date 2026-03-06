@@ -20,7 +20,7 @@ https://github.com/user-attachments/assets/9a8a2a0e-bb64-4292-8a7c-22aecd4ecfa5
 
 ## What It Does
 
-JobFilter AI drops a draggable scan panel into LinkedIn jobs and gives you the fast read:
+JobFilter AI drops a draggable scanner into LinkedIn jobs and gives you the fast read before you spiral into another pointless application:
 
 - `Eligible`, `Not Eligible`, or `Maybe`
 - `Visa Sponsor`
@@ -32,7 +32,7 @@ JobFilter AI drops a draggable scan panel into LinkedIn jobs and gives you the f
 
 ## Why It Exists
 
-Some job posts hide the real filter deep in the fine print. This tool tries to catch the citizenship wall, the clearance trap, and the no-sponsorship vibe before you waste the application.
+Some job posts bury the real filter deep in the fine print. This tool tries to catch the citizenship wall, the clearance trap, and the no-sponsorship energy before you waste your time.
 
 ## Install
 
@@ -41,21 +41,22 @@ Some job posts hide the real filter deep in the fine print. This tool tries to c
 3. Turn on `Developer mode`.
 4. Click `Load unpacked` and select this folder.
 5. Open the extension settings and paste your Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
-6. Open a LinkedIn job post and let it scan.
+6. Open a LinkedIn job post.
+7. Let the scanner judge the vibes.
 
 ## Scope
 
-This repo currently works on `linkedin.com/jobs/*`.
+Right now this thing is wired for `linkedin.com/jobs/*`.
 
-If you want Handshake support, that still needs to be built. The current manifest and selectors are LinkedIn-specific.
+If you want Handshake support, that still needs to be built. The current manifest and selectors are LinkedIn-only.
 
 ## Core Files
 
-- `manifest.json` — extension wiring and permissions
-- `content.js` — job extraction, Gemini call, injected panel
-- `styles.css` — floating scanner UI
-- `options.html` + `options.js` — API key config
-- `background.js` — opens the config page
+- `manifest.json` — tells Chrome what this creature can touch
+- `content.js` — scrapes the job post, calls Gemini, renders the scanner
+- `styles.css` — the floating cyber-panel look
+- `options.html` + `options.js` — where the API key lives
+- `background.js` — opens the config page when needed
 
 ## Stack
 
