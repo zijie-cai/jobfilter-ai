@@ -20,7 +20,7 @@ https://github.com/user-attachments/assets/9a8a2a0e-bb64-4292-8a7c-22aecd4ecfa5
 
 ## What It Does
 
-JobFilter AI drops a draggable scanner into LinkedIn jobs and gives you the fast read before you spiral into another pointless application:
+JobFilter AI analyzes LinkedIn jobs and gives you the quick verdict before you spiral into another pointless application:
 
 - `Eligible`, `Not Eligible`, or `Maybe`
 - `Visa Sponsor`
