@@ -8,6 +8,10 @@
     <code>Gemini Powered</code>
     <code>Cyber UI</code>
   </p>
+  <p>
+    <a href="https://zijie-cai.github.io/jobfilter-ai/">Open Landing Page</a> •
+    <a href="https://github.com/user-attachments/assets/9a8a2a0e-bb64-4292-8a7c-22aecd4ecfa5">Watch Demo</a>
+  </p>
 </div>
 
 ## Demo
@@ -16,106 +20,45 @@ https://github.com/user-attachments/assets/9a8a2a0e-bb64-4292-8a7c-22aecd4ecfa5
 
 ## What It Does
 
-JobFilter AI injects a draggable scanner panel into LinkedIn job pages, extracts the active role details, sends the description to Gemini, and returns a compact decision board:
+JobFilter AI drops a draggable scan panel into LinkedIn jobs and gives you the fast read:
 
 - `Eligible`, `Not Eligible`, or `Maybe`
 - `Visa Sponsor`
 - `OPT Friendly`
 - `Citizen Only`
 - `Clearance Required`
-- extracted skills
+- detected skills
 - one-line reasoning
 
-## Why It Feels Useful
+## Why It Exists
 
-Instead of manually hunting for hidden sponsorship signals, the extension turns a long job post into a quick yes/no/maybe screen.
+Some job posts hide the real filter deep in the fine print. This tool tries to catch the citizenship wall, the clearance trap, and the no-sponsorship vibe before you waste the application.
 
-## Current Scope
-
-This repo is currently built for `linkedin.com/jobs/*`.
-
-If your product direction is Handshake, that is not implemented in the current code yet. The manifest, content script, and selectors are all LinkedIn-specific right now.
-
-## Install The Extension
+## Install
 
 1. Download or clone this repo.
 2. Open `chrome://extensions`.
 3. Turn on `Developer mode`.
-4. Click `Load unpacked`.
-5. Select this project folder.
-6. Open the extension settings popup.
-7. Paste your Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
-8. Open a LinkedIn job page and let the panel scan.
+4. Click `Load unpacked` and select this folder.
+5. Open the extension settings and paste your Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+6. Open a LinkedIn job post and let it scan.
 
-## How It Works
+## Scope
 
-| Step | What happens |
-| --- | --- |
-| 1 | `content.js` watches LinkedIn job-page changes |
-| 2 | job title, company, and description are extracted from the active listing |
-| 3 | the text is sent to Gemini with a strict JSON response schema |
-| 4 | the floating panel renders the verdict, signals, skills, and reasoning |
-| 5 | the API key is stored in Chrome sync storage via the options page |
+This repo currently works on `linkedin.com/jobs/*`.
 
-## Local Development
+If you want Handshake support, that still needs to be built. The current manifest and selectors are LinkedIn-specific.
 
-### Extension runtime
+## Core Files
 
-The Chrome extension itself does not require a build step. These files run directly:
-
-- `manifest.json`
-- `content.js`
-- `styles.css`
-- `options.html`
-- `options.js`
-- `background.js`
-
-After changes, reload the unpacked extension in Chrome.
-
-### Landing page / install guide
-
-This repo also includes a separate Vite + React UI in `src/` that acts like a polished landing page or install guide.
-
-```bash
-npm install
-npm run dev
-```
-
-Optional:
-
-```bash
-npm run build
-npm run lint
-```
-
-If you run the Vite app, `.env.example` shows the expected `GEMINI_API_KEY` shape. The extension itself still reads the API key from the options UI, not from `.env`.
-
-## Project Map
-
-| Path | Purpose |
-| --- | --- |
-| `manifest.json` | Chrome extension config, permissions, and content-script wiring |
-| `content.js` | LinkedIn page scraping, Gemini call, and injected results panel |
-| `styles.css` | floating cyber-scanner UI styles |
-| `options.html` + `options.js` | API key settings screen |
-| `background.js` | opens the options page on request |
-| `src/` | Vite/React marketing or setup page |
-| `jobfilter_demo.mp4` | short demo video used in this README |
-
-## Permissions
-
-- `storage`: save the Gemini API key
-- `activeTab` and `scripting`: interact with the active job page
-- `https://www.linkedin.com/*`: read LinkedIn job content
-- `https://generativelanguage.googleapis.com/*`: call Gemini
+- `manifest.json` — extension wiring and permissions
+- `content.js` — job extraction, Gemini call, injected panel
+- `styles.css` — floating scanner UI
+- `options.html` + `options.js` — API key config
+- `background.js` — opens the config page
 
 ## Stack
 
 - Chrome Extension Manifest V3
-- Vanilla JavaScript for the extension runtime
-- React + Vite + Tailwind for the landing page
-- Gemini API for job eligibility analysis
-
-## Short Version
-
-JobFilter AI is a fast LinkedIn job triage tool with a loud UI and a simple purpose: help users spot visa-hostile roles before they waste time applying.
+- Vanilla JavaScript
+- Gemini API
