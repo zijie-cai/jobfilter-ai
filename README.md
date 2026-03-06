@@ -19,7 +19,7 @@ https://github.com/user-attachments/assets/9a8a2a0e-bb64-4292-8a7c-22aecd4ecfa5
 
 ## What It Does
 
-JobFilter AI analyzes LinkedIn jobs and gives you the quick verdict before you spiral into another pointless application, surfacing sponsorship signals, citizenship requirements, clearance requirements, and key skills:
+JobFilter AI scans LinkedIn jobs and turns the fine print into a fast decision board:
 
 - `Eligible`, `Not Eligible`, or `Maybe`
 - `Visa Sponsor`
