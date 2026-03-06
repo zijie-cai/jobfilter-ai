@@ -32,7 +32,7 @@ JobFilter AI drops a draggable scanner into LinkedIn jobs and gives you the fast
 
 ## Why It Exists
 
-Some job posts bury the real filter deep in the fine print. This tool tries to catch the citizenship wall, the clearance trap, and the no-sponsorship energy before you waste your time.
+JobFilter AI helps international students waste less time on visa-hostile roles. It catches citizenship requirements, clearance requirements, and no-sponsorship signals early.
 
 ## Install
 
