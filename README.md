@@ -1,6 +1,5 @@
 <div align="center">
-  <img src="./icon128.png" alt="JobFilter AI icon" width="88" />
-  <h1>JobFilter AI</h1>
+  <img src="./banner.png" alt="JobFilter AI banner" width="100%" />
   <p><strong>A Chrome extension that scans LinkedIn job posts with Gemini and answers the question fast:</strong><br />is this job actually worth applying to as an international student?</p>
   <p>
     <code>Chrome Extension</code>
