@@ -10,7 +10,6 @@
   </p>
   <p>
     <a href="https://zijie-cai.github.io/jobfilter-ai/">Open Landing Page</a> •
-    <a href="https://github.com/user-attachments/assets/9a8a2a0e-bb64-4292-8a7c-22aecd4ecfa5">Watch Demo</a>
   </p>
 </div>
 
